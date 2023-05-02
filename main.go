@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	helloworldv2 "github.com/pranayhere/grpc-gw-2/proto/proto/helloworld"
+	helloworldv2 "github.com/pranayhere/grpc-gw-2/proto/helloworld"
 	"google.golang.org/grpc"
 )
 

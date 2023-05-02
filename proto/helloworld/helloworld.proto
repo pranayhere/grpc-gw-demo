@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-option go_package = "github.com/pranayhere/grpc-gw-demo;helloworldv2";
-
 import "google/api/annotations.proto";
+
+option go_package = "github.com/pranayhere/grpc-gw-demo;helloworldv2";
 
 // the greeting service definition
 service Greeter {
   // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {
+  rpc SayHello(HelloRequest) returns (HelloReply) {
     option (google.api.http) = {
       post: "/v1/example/echo"
       body: "*"
