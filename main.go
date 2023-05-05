@@ -5,20 +5,21 @@ import (
 	"log"
 	"net"
 
-	helloworldv2 "github.com/pranayhere/grpc-gw-2/proto/helloworld"
+	helloworldv1 "github.com/pranayhere/grpc-gw-2/rpc/hw/v1"
 	"google.golang.org/grpc"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type server struct {
-	helloworldv2.UnimplementedGreeterServer
+	helloworldv1.UnimplementedGreeterServer
 }
 
 func NewServer() *server {
 	return &server{}
 }
 
-func (s *server) SayHello(ctx context.Context, in *helloworldv2.HelloRequest) (*helloworldv2.HelloReply, error) {
-	return &helloworldv2.HelloReply{Message: "hello " + in.Name}, nil
+func (s *server) SayHello(ctx context.Context, in *helloworldv1.HelloRequest) (*helloworldv1.HelloReply, error) {
+	return &helloworldv1.HelloReply{Message: "hello " + in.Name, Timestamp: timestamppb.Now()}, nil
 }
 
 func main() {
@@ -28,7 +29,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	helloworldv2.RegisterGreeterServer(s, NewServer())
+	helloworldv1.RegisterGreeterServer(s, NewServer())
 
 	log.Fatal(s.Serve(lis))
 }

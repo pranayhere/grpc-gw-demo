@@ -1,8 +1,11 @@
 syntax = "proto3";
 
-import "google/api/annotations.proto";
+package helloworld.v1;
 
-option go_package = "github.com/pranayhere/grpc-gw-demo;helloworldv2";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/pranayhere/grpc-gw-demo/hw/v1;helloworldv1";
 
 // the greeting service definition
 service Greeter {
@@ -23,4 +26,5 @@ message HelloRequest {
 // The response message containing the greetings
 message HelloReply {
   string message = 1;
+  google.protobuf.Timestamp timestamp = 2;
 }
